@@ -1,0 +1,29 @@
+{
+  "name": "wegevorschrift-viz",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "parser": "peggy --plugin ./node_modules/ts-pegjs/dist/tspegjs.js -o src/lib/parser.ts src/lib/parser.peggy",
+    "dev": "pnpm parser && vite",
+    "build": "pnpm parser && vite build",
+    "preview": "pnpm parser && vite preview",
+    "check": "pnpm parser && svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-content": "^1.0.5",
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
+    "@tsconfig/svelte": "^5.0.4",
+    "peggy": "^3.0.2",
+    "svelte": "^4.2.18",
+    "svelte-check": "^3.8.5",
+    "ts-pegjs": "^4.2.1",
+    "tslib": "^2.6.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.1"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6",
+    "idb": "^8.0.0"
+  }
+}
