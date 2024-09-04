@@ -9,15 +9,17 @@
 </script>
 
 <main>
+  <h1>Wegevorschrift</h1>
+
   {#await updatePromise}
     <p>Loading data</p>
-  {:then}
-    <h1>Wegevorschrift</h1>
-
-    <input bind:value={input_value} />
-
-    <Viz {input_value} {db} />
+  {:catch}
+    <p>Warning: Failed to load data</p>
   {/await}
+
+  <input bind:value={input_value} />
+
+  <Viz {input_value} {db} />
 </main>
 
 <style>
