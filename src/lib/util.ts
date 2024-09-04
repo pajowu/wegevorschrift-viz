@@ -49,7 +49,7 @@ async function translatePart(
   db: DeutschlandtarifData
 ): Promise<Part> {
   if (typeof part === "string") {
-    return (await db.getTarifpunkt(part)) || part;
+    return (await db.getTarifpunkt(part.toUpperCase())) || part;
   } else {
     return translateAlternative(part, db);
   }
