@@ -1,7 +1,9 @@
 <script lang="ts">
   import { DeutschlandtarifData } from "./data/deutschlandtarif";
+  import { RicsData } from "./data/rics";
   import Viz from "./lib/Viz.svelte";
   const db = new DeutschlandtarifData();
+  const rics_data = new RicsData();
   let updatePromise = db.update();
   console.log("ltkz", db);
 
@@ -19,7 +21,7 @@
 
   <input bind:value={input_value} />
 
-  <Viz {input_value} {db} />
+  <Viz {input_value} {db} {rics_data} />
 </main>
 
 <style>

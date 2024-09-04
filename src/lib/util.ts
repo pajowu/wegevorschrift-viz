@@ -49,7 +49,7 @@ async function translatePart(
   db: DeutschlandtarifData
 ): Promise<Part> {
   if (typeof part === "string") {
-    return (await db.getTarifpunkt(part.toUpperCase())) || part;
+    return (await db.getTarifpunkt(part.toUpperCase().trim())) || part;
   } else {
     return translateAlternative(part, db);
   }
@@ -63,4 +63,12 @@ async function translateAlternative(
     translateWegevorschrift(alt[0], db),
     translateWegevorschrift(alt[1], db),
   ]);
+}
+
+export function getFlagEmoji(countryCode: string): string {
+  const codePoints = countryCode
+    .toUpperCase()
+    .split("")
+    .map((char) => 127397 + char.charCodeAt(0));
+  return String.fromCodePoint(...codePoints);
 }
