@@ -12,7 +12,8 @@
   function safeWrap<T>(fn: () => T): T | null {
     try {
       return fn();
-    } catch {
+    } catch (e) {
+      console.error(e);
       return null;
     }
   }
