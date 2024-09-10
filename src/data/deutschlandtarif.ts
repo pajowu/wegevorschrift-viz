@@ -47,13 +47,13 @@ export class DeutschlandtarifData {
     }
     const last_mod_dat: Array<{ name: string; date: string }> = await parse(
       await resp.text(),
-      { columns: true }
+      { columns: true },
     );
     const known_last_mod = Object.fromEntries(
       (await this.dbPromise.then((x) => x.getAll("last_modified"))).map((x) => [
         x.name,
         x.date,
-      ])
+      ]),
     );
     const needs_upgrade = last_mod_dat
       .filter((row) => known_last_mod[row.name] !== row.date)
@@ -70,13 +70,13 @@ export class DeutschlandtarifData {
         await parse(await req.text(), { columns: true });
       const tx = (await this.dbPromise).transaction(
         ["last_modified", "Leitpunktkürzel"],
-        "readwrite"
+        "readwrite",
       );
       await Promise.all([
         ...dat.map((x: unknown) =>
           tx
             .objectStore("Leitpunktkürzel")
-            .put(x as DeutschlandtarifDb["Leitpunktkürzel"]["value"])
+            .put(x as DeutschlandtarifDb["Leitpunktkürzel"]["value"]),
         ),
         tx
           .objectStore("last_modified")

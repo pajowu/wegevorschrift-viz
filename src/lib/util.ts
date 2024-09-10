@@ -34,19 +34,19 @@ function unparseAlternative(alt: Alternative): string {
 
 export async function translateWegevorschrift(
   input: Wegevorschrift,
-  db: DeutschlandtarifData
+  db: DeutschlandtarifData,
 ): Promise<Wegevorschrift> {
   return Promise.all(
     input.map(async (x) => ({
       ...x,
       way: await Promise.all(x.way.map((y) => translatePart(y, db))),
-    }))
+    })),
   );
 }
 
 async function translatePart(
   part: Part,
-  db: DeutschlandtarifData
+  db: DeutschlandtarifData,
 ): Promise<Part> {
   if (typeof part === "string") {
     return (await db.getTarifpunkt(part.toUpperCase().trim())) || part;
@@ -57,7 +57,7 @@ async function translatePart(
 
 async function translateAlternative(
   alt: Alternative,
-  db: DeutschlandtarifData
+  db: DeutschlandtarifData,
 ): Promise<Alternative> {
   return Promise.all([
     translateWegevorschrift(alt[0], db),

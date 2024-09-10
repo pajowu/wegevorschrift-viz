@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getFlagEmoji, unparseWegevorschrift } from "../util";
+  import { getFlagEmoji } from "../util";
   import Alternative from "./Alternative.svelte";
 
   export let wegevorschrift, rics_data;

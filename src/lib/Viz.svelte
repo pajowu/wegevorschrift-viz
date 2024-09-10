@@ -1,11 +1,7 @@
 <script lang="ts">
   import CountryVorschrift from "./components/CountryVorschrift.svelte";
   import { parse } from "./parser";
-  import {
-    getFlagEmoji,
-    translateWegevorschrift,
-    unparseWegevorschrift,
-  } from "./util";
+  import { translateWegevorschrift } from "./util";
 
   export let input_value, db, rics_data;
 
@@ -18,7 +14,7 @@
     }
   }
   $: translatePromise = safeWrap(() =>
-    translateWegevorschrift(parse(input_value.trim()), db)
+    translateWegevorschrift(parse(input_value.trim()), db),
   );
 </script>
 
