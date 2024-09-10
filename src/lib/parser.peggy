@@ -6,8 +6,11 @@ Part =
 
 Alternative = "(" p1:Wegevorschrift "/" p2:Wegevorschrift ")" { return [p1, p2]; }
 
-Name = 
-	str:$[^/*+<>()]+
+Name = str:$(NameNoBrackets/NameBrackets)+
+
+NameNoBrackets = str:[^/*+<>()]+
+
+NameBrackets = str:([(][^/*+<>()]+[)])
 
 Country = 
 	"<" cc:[0-9]+ ">" { return cc.join("") }
