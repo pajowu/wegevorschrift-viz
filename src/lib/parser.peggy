@@ -8,9 +8,9 @@ Alternative = "(" p1:Wegevorschrift "/" p2:Wegevorschrift ")" { return [p1, p2];
 
 Name = str:$(NameNoBrackets/NameBrackets)+
 
-NameNoBrackets = str:[^/*+<>()]+
+NameNoBrackets = [^/*+<>()]+
 
-NameBrackets = str:([(][^/*+<>()]+[)])
+NameBrackets = "(" NameNoBrackets ")"
 
 Country = 
 	"<" cc:[0-9]+ ">" { return cc.join("") }
